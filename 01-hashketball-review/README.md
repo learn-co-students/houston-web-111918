@@ -2,8 +2,8 @@
 
 ## Objectives
 
-1. Practice building nested hashes.
-2. Practice iterating over nested hashes.
+1. Array methods
+2. Debugging with `binding.pry`
 
 ## Instructions
 
