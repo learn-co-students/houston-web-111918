@@ -33,6 +33,6 @@ class Ingredient
 end
 
 # make some fake data
-5.times do
-  Ingredient.new(Faker::Food.ingredient)
-end
+# 5.times do
+#   Ingredient.new(Faker::Food.ingredient)
+# end

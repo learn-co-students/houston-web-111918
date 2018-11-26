@@ -52,6 +52,6 @@ class Recipe
 end
 
 # use faker to make a bunch of recipes
-5.times do
-  Recipe.new(Faker::Food.dish)
-end
+# 5.times do
+#   Recipe.new(Faker::Food.dish)
+# end
