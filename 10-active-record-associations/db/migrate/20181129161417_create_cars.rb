@@ -3,9 +3,9 @@ class CreateCars < ActiveRecord::Migration[5.2]
     create_table :cars do |t|
       t.string :brand
       t.string :color
-      t.integer :year
-      t.string :model
-      t.integer :price
+      t.belongs_to :flatiron_student
+      # t.integer :flatiron_student_id
+      # t.references :flatiron_student
     end
   end
 end

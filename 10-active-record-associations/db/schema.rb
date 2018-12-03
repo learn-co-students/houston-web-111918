@@ -10,14 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_29_161417) do
+ActiveRecord::Schema.define(version: 2018_12_03_163556) do
 
   create_table "cars", force: :cascade do |t|
     t.string "brand"
     t.string "color"
-    t.integer "year"
-    t.string "model"
-    t.integer "price"
+    t.integer "flatiron_student_id"
+    t.index ["flatiron_student_id"], name: "index_cars_on_flatiron_student_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "flatiron_students", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "restaurants", force: :cascade do |t|
+    t.string "name"
+    t.integer "stars"
+  end
+
+  create_table "visits", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "restaurant_id"
+    t.index ["customer_id"], name: "index_visits_on_customer_id"
+    t.index ["restaurant_id"], name: "index_visits_on_restaurant_id"
   end
 
 end
