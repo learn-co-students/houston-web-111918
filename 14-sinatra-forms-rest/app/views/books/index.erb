@@ -1,5 +1,11 @@
-<h1>Books list</h1>
+<h1>Books lister</h1>
 
 <% @books.each do |book| %>
-  <p><a href="/books/<%= book.id %>"><%= book.title %></a></p>
+  <p>
+    <a href="/books/<%= book.id %>"><%= book.title %></a> - 
+    <form action="/books/<%= book.id %>" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <button><span style="color:red">X</span></button>
+    </form>
+  </p>
 <% end %>
