@@ -1,0 +1,5 @@
+<h1>Alla my carsas</h1>
+
+<% @cars.each do |car| %>
+  <p><%= link_to car.make, car %></p>
+<% end %>
