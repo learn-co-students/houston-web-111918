@@ -1,0 +1,15 @@
+<h1>Make me a new lion, please</h1>
+
+<%= form_with model: Lion.new do |f| %>
+  <%= f.text_field :name, placeholder: "Name" %>
+  <%= f.text_field :gender, placeholder: "Gender" %>
+  <%= f.text_field :color, placeholder: "Color" %>
+
+  <%# f.number_field :american_id, placeholder: "american_id" %>
+
+  <%# f.select :american_id, American .all.collect { |american| [ american.name, american.id ] } %>
+
+  <%= f.collection_select :american_id, American.all, :id, :name %>
+
+  <%= f.submit %>
+<% end %>

@@ -1,0 +1,11 @@
+<%= link_to "murca", americans_path %>
+
+<h1>All 'bout <%= @american.name %></h1>
+
+<h2>Yo! I'm from <%= @american.state %></h2>
+
+<h3>Guns: <%= @american.num_guns %></h3>
+
+<p>My lions' names are <%= @american.lions.map { |lion| lion.name }.join(', ') %></p>
+
+<%= button_to "Delete this murcan", @american, :method => :delete %>
