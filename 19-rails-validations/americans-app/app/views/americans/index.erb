@@ -1,0 +1,9 @@
+<h1>murca</h1>
+
+<h3><%= link_to "Create murcan", new_american_path %></h3>
+
+<ul>
+<% @americans.each do |american| %>
+  <li><%= link_to american.name, american %></li>
+<% end %>
+</ul>

@@ -1,0 +1,10 @@
+<h1>I would like to updata my murcan</h1>
+
+<%= form_with model: @american do |form| %>
+  <%= form.text_field :name, placeholder: 'name' %>
+  <%= form.text_field :state, placeholder: 'state' %>
+  <%= form.number_field :num_guns, placeholder: 'num_guns' %>
+  <%= form.submit %>
+<% end %>
+
+<%# render 'form' %>
