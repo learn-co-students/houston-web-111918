@@ -2,7 +2,7 @@
 Let's build a simple CRUD app to 
 
 ## Deliverables
-* Render a list of dog names
+* ~~Render a list of dog names~~
 * When the name of a dog is clicked, render the name, breed and image of that dog in "details" pane.
 * When you click delete, the dog should be removed from the list
 * When you click edit, turn the "details" pane into an "edit" form.
