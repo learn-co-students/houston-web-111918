@@ -1,0 +1,28 @@
+{
+  "dogs": [
+    {
+      "id": 3,
+      "name": "Lady",
+      "breed": "Collie",
+      "image_url": "https://vignette.wikia.nocookie.net/ladyandtramp/images/2/23/Tramp-disneyscreencaps_com-1216.jpg/revision/latest?cb=20121108202046"
+    },
+    {
+      "id": 4,
+      "name": "Tramp",
+      "breed": "Mut",
+      "image_url": "http://www.cornel1801.com/disney/Lady-Tramp-II-Scamps-Adventure-2001/characters/Tramp.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Ann",
+      "breed": "Coon Hound",
+      "image_url": "http://rfern111.weebly.com/uploads/7/1/0/4/71046507/481812.jpg"
+    },
+    {
+      "name": "Brady",
+      "breed": "Puli",
+      "image_url": "https://images.fineartamerica.com/images-medium-large-5/puli-in-pink-fraida-gutovich.jpg",
+      "id": 6
+    }
+  ]
+}
