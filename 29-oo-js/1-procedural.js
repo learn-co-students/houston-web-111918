@@ -1,6 +1,7 @@
 let speed = 15
 let movement
 const characterAssets = 'assets/character'
+const characterElement = document.createElement('img')
 characterElement.src = `${characterAssets}/static.gif`
 characterElement.style.position = 'relative'
 characterElement.style.left = '0px'
