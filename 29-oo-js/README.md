@@ -1,2 +1,16 @@
-# js-character
-This is the code we will be working with during our lecture on Object Oriented JavaScript; when convenient, please try to familiarize yourself with it before the lecutre. Open up the index.html in your browser, open the console, and then call `walkEast()` to get started. Check the index.js file and see what other functions you can call, and try to understand how they work. If anything confuses you, please ask questions.
+# Object Oriented JavaScript
+
+* Objects
+  * Are described by classes
+  * Data + Behavior (attributes and methods)
+* Todays Outline:
+  * Factory Functions
+    * Simply functions that return a new object every time you call them
+  * Constructor Functions
+    * Invoked with the new keyword
+    * Uses a prototype to share behavior more performantly
+    * Loses context to *this* unless we use an arrow function
+  * Class Syntax
+    * Uses a constructor method
+    * Is not browser compatible 
+    * Can be made cross-brower compatible using babel
