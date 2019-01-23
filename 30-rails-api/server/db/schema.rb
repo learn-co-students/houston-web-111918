@@ -10,27 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_03_155137) do
+ActiveRecord::Schema.define(version: 2019_01_22_162153) do
 
-  create_table "abilities", force: :cascade do |t|
+  create_table "dogs", force: :cascade do |t|
     t.string "name"
+    t.string "breed"
+    t.string "image_url"
+    t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_dogs_on_owner_id"
   end
 
-  create_table "dragon_abilities", force: :cascade do |t|
-    t.integer "dragon_id"
-    t.integer "ability_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["ability_id"], name: "index_dragon_abilities_on_ability_id"
-    t.index ["dragon_id"], name: "index_dragon_abilities_on_dragon_id"
-  end
-
-  create_table "dragons", force: :cascade do |t|
+  create_table "owners", force: :cascade do |t|
     t.string "name"
-    t.string "description"
-    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

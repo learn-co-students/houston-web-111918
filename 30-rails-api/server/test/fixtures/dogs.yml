@@ -2,10 +2,12 @@
 
 one:
   name: MyString
-  description: MyString
-  image: MyString
+  breed: MyString
+  image_url: MyString
+  owner: one
 
 two:
   name: MyString
-  description: MyString
-  image: MyString
+  breed: MyString
+  image_url: MyString
+  owner: two

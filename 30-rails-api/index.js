@@ -1,164 +1,217 @@
-const app = document.getElementById('app')
-const server = ajax('http://localhost:3001/api/v1')
+// Utils
+let ce = function(tagName){
+    return document.createElement(tagName)
+}
 
-let dragons = []
-let selectedDragon = {}
-let selectedView = 'dragons'
+// Variable Data
+let owners = []
+let selectedOwner = null;
+let dogs = []
+let selectedDog = null;
+let selectedView = false
 
-server.get('/dragons')
-    .then(function(result){
-        update(function(){
-            dragons = result
+fetch('http://localhost:3000/api/v1/owners')
+	.then(function(response){
+		return response.json()
+	})
+	.then(function(result){
+        owners = result
+        render()
+	})
+
+// HTML Elements
+let dogNameInput, dogBreedInput, dogImageInput, dogForms
+
+// Renderers
+const render = function(){
+    document.body.innerHTML = '' 
+    renderOwnerList()
+    switch(selectedView){
+        case 'show-owner':
+            renderOwnerDetail()
+        break;
+        case 'show-dog':
+            renderDogDetail()
+        break
+        case 'edit-dog':
+            renderEditDogForm()
+        break;
+        case 'new-dog':
+            renderNewDogForm()
+        break
+    } 
+}
+
+let renderOwnerList = function(){
+    let ownerList = ce('ol')
+    ownerList.style.width = '20%'
+    ownerList.style.float = 'left'
+
+    document.body.append( 
+        ownerList
+    )
+    owners.forEach(function(currentOwner, index){
+        let listItem = document.createElement('li')
+        listItem.innerText = currentOwner.name
+        listItem.addEventListener('click', function(){
+            selectOwner(currentOwner)
         })
+        ownerList.append(listItem)
+    })
+}
+
+let renderOwnerDetail = function(){
+    let container = ce('div')
+
+    let ownerNameHeader = ce('h1')
+    ownerNameHeader.innerText = selectedOwner.name
+
+    container.append(
+        ownerNameHeader,
+        renderDogList(selectedOwner.dogs)
+    )
+
+    document.body.append(container)
+}
+
+let renderDogList = function(dogs){
+    let container = ce('div')
+
+    let dogList = ce('ol')
+    dogList.style.width = '20%'
+    dogList.style.float = 'left'
+
+    container.append( 
+        dogList
+    )
+    dogs.forEach(function(currentDog, index){
+        let listItem = document.createElement('li')
+        listItem.innerText = currentDog.name
+        listItem.addEventListener('click', function(){
+            selectDog(currentDog)
+        })
+        dogList.append(listItem)
     })
 
-const render = function(){
-    app.innerHTML = ''
-    switch(selectedView){
-        case 'dragons':
-            app.append( renderDragonsList() )
-        break;
-        case 'dragon':
-            app.append( renderSelectedDragon() )
-        break;
-        case 'dragon-form':
-            app.append( renderDragonForm() )
-        break;
+    return container
+}
+
+let renderDogDetail = function(){
+    let dogDetail = document.createElement('div')
+    dogDetail.style.width = '60%'
+    dogDetail.style.float = 'left'
+    document.body.append( dogDetail )
+    if(selectedDog){
+        let dogDescription = document.createElement('p')
+        dogDescription.innerText = `${selectedDog.name}: ${selectedDog.breed}`
+
+        let dogImage = document.createElement('img')
+        dogImage.src = selectedDog.image_url
+        dogImage.style.maxWidth = '100%'
+
+        let editButton = document.createElement('button')
+        editButton.innerText = 'Edit'
+        editButton.addEventListener('click', function(){
+            selectedView = 'edit-dog'
+            render()
+        })
+
+        dogDetail.innerHTML = ''
+        dogDetail.append(
+            dogDescription, 
+            dogImage,
+            document.createElement('br'),
+            editButton
+        )
     }
 }
 
-const renderDragonsList = function(){
-    return renderList(
-        ...dragons.map( function(currentDragon){
-            return renderListItem(currentDragon.name, function(){
-                server.get(`/dragons/${currentDragon.id}`)
-                    .then(function(currentDragon){
-                        update(function(){
-                            selectedDragon = currentDragon
-                            selectedView = 'dragon'
-                        })
-                    }) 
-           })
-        }),
-        renderButton('+', function(){
-            update(function(){
-                selectedDragon = { 
-                    name: '',
-                    description: '',
-                    image: '',
-                    abilities: []
-                }
-                selectedView = 'dragon-form'
-            })
-        })
+let renderEditDogForm = function(){
+    
+    // Render Common Inputs
+    renderDogFormInputs()
+    
+    // Render form specific buttons
+    let submitButton = document.createElement('button')
+    submitButton.innerText = 'Save'
+    submitButton.addEventListener('click', function(e){
+        e.preventDefault()
+        updateSelectedDog()
+    })
+
+    let deleteButton = document.createElement('button')
+    deleteButton.innerText = 'Delete'
+    deleteButton.addEventListener('click', function(e){
+        e.preventDefault()
+        let answer = window.confirm('Are you sure?') 
+        if(answer){
+            deleteSelectedDog()
+        }
+    })
+
+    dogForm.append(
+        deleteButton,
+        submitButton
     )
 }
 
-const renderSelectedDragon = function(){
-    let selectedDragonDiv = h('div')
-    selectedDragonDiv.append(
-        renderLink('Back to Dragons', function(){
-            update(function(){
-                selectedView = 'dragons'
-            })
-        }),
-        renderHeader(selectedDragon.name),
-        renderParagraph(selectedDragon.description),
-        renderImage(selectedDragon.image),
-        h('br'),
-        renderLabel('Abilities'),
-        renderList(
-            ...selectedDragon.abilities.map(function(ability){
-                return renderListItem(ability.name)
-            })
-        ),
-        renderButton('Edit', function(){
-            update(function(){
-                selectedView = 'dragon-form'
-            })
-        }),
-        renderButton('Delete', function(){
-            update(function(){
-                let targetIndex = dragons.indexOf(selectedDragon)
-                dragons.splice(targetIndex, 1)
-                selectedView = 'dragons'
-                // Persisting our edits
-                server.delete(`/dragons/${selectedDragon.id}`)
-            })
-        })
+let renderNewDogForm = function(){
+
+    renderDogFormInputs()
+
+    let submitButton = document.createElement('button')
+    submitButton.innerText = 'Create'
+    submitButton.addEventListener('click', function(e){
+        e.preventDefault()
+        createNewDog()
+    })
+
+    dogForm.append(
+        submitButton
     )
-    return selectedDragonDiv
 }
 
-const renderDragonForm = function(){
-    let selectedDragonDiv = h('div')
-    let nameInput, descriptionInput, imageInput, abilityInputs, abilityInputContainer;
-    selectedDragonDiv.append(
-        renderLabel('Name'),
-        nameInput = renderInput('text', selectedDragon.name),
-        h('br'),
-        renderLabel('Description'),
-        descriptionInput = renderInput('text', selectedDragon.description),
-        h('br'),
-        renderLabel('Image'),
-        imageInput = renderInput('text', selectedDragon.image),
-        h('br'),
-        renderLabel('Abilities'),
-        abilityInputContainer = renderDiv(
-            ...abilityInputs = selectedDragon.abilities.map(function(ability){
-                return renderInput('text', ability.name)
-            }),
-        ),
-        renderButton('+', function(){
-            let newInput = renderInput('text', '')
-            selectedDragon.abilities.push({ name: '' })
-            abilityInputs.push(newInput)
-            abilityInputContainer.append(newInput)
-        }),
-        h('br'),
-        renderButton('Save', function(){
-            update(function(){
-                selectedDragon.name = nameInput.value
-                selectedDragon.description = descriptionInput.value
-                selectedDragon.image = imageInput.value
-                abilityInputs.forEach( function(input, index){
-                    selectedDragon.abilities[index].name = input.value 
-                })
-                if(!dragons.includes(selectedDragon)){
-                    dragons.push(selectedDragon)
-                    // Persisting our newly created dragon
-                    server.post(`/dragons/`, {
-                        name: selectedDragon.name,
-                        description: selectedDragon.description,
-                        image: selectedDragon.image,
-                        abilities_attributes: selectedDragon.abilities
-                    }).then(function(result){
-                        selectedDragon.id = result.id
-                    })
-                } else { 
-                    // Persisting our edits
-                    server.patch(`/dragons/${selectedDragon.id}`, {
-                        name: selectedDragon.name,
-                        description: selectedDragon.description,
-                        image: selectedDragon.image,
-                        abilities_attributes: selectedDragon.abilities
-                    })
-                }
-                selectedView = 'dragon'
-            })
-        }),
-        renderButton('Cancel', function(){
-            update(function(){
-                selectedView = 'dragon'
-            })
-        })
-    )
-    return selectedDragonDiv
-}
+let renderDogFormInputs = function(){
+    dogForm = document.createElement('form')
+    dogForm.style.width = '60%'
+    dogForm.style.float = 'left'
 
-const update = function(updater){
-    updater()
-    render()
+    document.body.append( dogForm )
+
+    let dogNameLabel = ce('label')
+    dogNameLabel.innerText = 'Name'
+    
+    dogNameInput = ce('input')
+    if(selectedDog){ 
+        dogNameInput.value = selectedDog.name
+    }
+
+    let dogBreedLabel = ce('label')
+    dogBreedLabel.innerText = 'Breed'
+    
+    dogBreedInput = ce('input')
+    if(selectedDog){ 
+        dogBreedInput.value = selectedDog.breed
+    }
+
+    let dogImageLabel = ce('label')
+    dogImageLabel.innerText = 'Image URL'
+    
+    dogImageInput = ce('input')
+    if(selectedDog){ 
+        dogImageInput.value = selectedDog.image_url
+    }
+
+    dogForm.append(
+        dogNameLabel,
+        dogNameInput,
+        document.createElement('br'),
+        dogBreedLabel,
+        dogBreedInput,
+        document.createElement('br'),
+        dogImageLabel,
+        dogImageInput
+    )
 }
 
 render()

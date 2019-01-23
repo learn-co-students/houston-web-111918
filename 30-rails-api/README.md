@@ -1,34 +1,27 @@
 # Rails API
 
 ## Vocabulary
-
-* Cross Origin Resource Sharing (CORS)
 * rails `--api` option
+
+  * Creates an optimized rails project for apis
 * `render` method
-* `json: ` option
-*  `methods: ` option
+  * Sends data to the client (browser)
+* `json: ` render option
+  * Serializes the data render sends as son
+* Cross Origin Resource Sharing (CORS)
+* `methods: ` render option
+  * Defines methods to call before serializing an object to JSON
+    * Helpful to include associations
 
 ## Deliverables
-
-* The ability to list `abilities` seperately from dragons
+* **To group the dogs by owner, instead of showing one long list**
 
 ## Outline
-
-* Introduction
-    * How would we have accomplished this with Rails?
-        * Associations are defined on the server
-        * JSON server has served us well until now, but is not a robust tool for API development
-* Creating a Rails API 
-    * We don't want to use all of the features of a rails application
-    * the **`--api`** option allows us to create a Rails API with only the features we need
-* Rails Refresher
-    * Creating Models
-    * Creating Controllers
-        * Using **`render json:`** to send JSON to the client
-* Associations with Rails API
-    * Using **`methods`**  and/or **`includes`** to include nested resources when sending a response
-* Best practices: fetching data only when we need it
-    * Refactoring our front end to get a dragons abilities only when we show its details
-
-
-
+* ~~Create the Rails API~~
+* ~~Create our models~~
+* ~~Seed our database~~
+* ~~Create our controllers~~
+* ~~Start the server~~
+* ~~Fix some bugs (cors)~~
+* ~~Add custom logic to include dogs with their owners~~
+* ~~Refactor for performance~~

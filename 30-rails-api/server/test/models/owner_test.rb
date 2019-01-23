@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DragonTest < ActiveSupport::TestCase
+class OwnerTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
