@@ -1,4 +1,4 @@
-# Intro to React
+# Setup and State
 
 ## Pain Points of Mod 3:
 
@@ -23,3 +23,8 @@
   * A library that works on Native or the Web
 * React DOM
   * Web Specific
+
+## State
+* Contains the variable data for our component
+* Should only be manipulated using `setState`
+* Will automatically re-render when changed!

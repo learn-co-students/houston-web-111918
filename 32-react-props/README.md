@@ -1,4 +1,4 @@
-# Intro To React Part II
+# Props
 
 ## Deliverables
 
@@ -32,7 +32,7 @@ class DragonCard extends Component {
 
 ​	which instantiates and calls the **render** method of the component
 
-## Intro to Props
+## Props
 
 * Props can be passed explicitly:
 
