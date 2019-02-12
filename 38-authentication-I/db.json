@@ -1,0 +1,18 @@
+{
+  "things": [
+    {
+      "name": "Turing",
+      "description": "A place where I lecture and sometimes do yoga",
+      "id": 1
+    }
+  ],
+  "users": [
+    {
+      "name": "Joshua",
+      "username": "joshua.miles",
+      "password": "1234",
+      "bio": "I teach things",
+      "id": 1
+    }
+  ]
+}
