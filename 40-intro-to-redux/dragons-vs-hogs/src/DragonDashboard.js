@@ -6,9 +6,9 @@ export class DragonDashboard extends Component {
     render() {
         return (
             <div style={{ position: 'fixed', left: '0px', bottom: '0px', backgroundColor: 'white'}}>
-                <SmaugControl />
-                <ToothlessControl />
-                <BozarControl />
+                <SmaugControl attackSmaug={this.props.attackSmaug} healSmaug={this.props.healSmaug} />
+                <ToothlessControl attackToothless={this.props.attackToothless} healToothless={this.props.healToothless} />
+                <BozarControl attackBozar={this.props.attackBozar} healBozar={this.props.healBozar} />
             </div>
         );
     }

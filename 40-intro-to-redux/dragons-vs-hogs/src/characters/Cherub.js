@@ -6,7 +6,7 @@ export class Cherub extends Component {
         return (
             <div style={{ textAlign: 'right'}}>
                 <h3>Cherub</h3>
-                <HealthBar />
+                <HealthBar health={this.props.cherub} />
                 <img style={{ width:'100px'}} src="https://res.cloudinary.com/dabeyvbyw/image/upload/v1544712623/cherub.png" />
             </div>
         );

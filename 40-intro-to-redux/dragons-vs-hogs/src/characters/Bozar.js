@@ -5,7 +5,7 @@ export class Bozar extends Component {
         return (
             <div>
                 <h3>Bozar</h3>
-                <HealthBar />
+                <HealthBar health={this.props.bozar}/>
                 <img style={{ width:'100px'}} src="https://static.boredpanda.com/blog/wp-content/uploads/2015/05/What-are-dragons-doing-nowadays-fb3.jpg" />
             </div>
         );

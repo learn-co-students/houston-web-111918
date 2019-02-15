@@ -6,7 +6,7 @@ export class Rainbowdash extends Component {
         return (
             <div style={{ textAlign: 'right'}}>
                 <h3>Rainbowdash</h3>
-                <HealthBar />
+                <HealthBar health={this.props.rainbowdash} />
                 <img style={{ width:'100px'}} src="https://res.cloudinary.com/dabeyvbyw/image/upload/v1544712626/rainbowdash.jpg" />
             </div>
         );

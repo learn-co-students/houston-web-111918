@@ -6,7 +6,7 @@ export class Smaug extends Component {
         return (
             <div>
                 <h3>Smaug</h3>
-                <HealthBar />
+                <HealthBar health={this.props.smaug} />
                 <img style={{ width:'100px'}} src="http://media.comicbook.com/uploads1/2015/08/cumbersmaug-147620.jpg" />
             </div>
         );
