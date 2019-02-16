@@ -1,6 +1,57 @@
+
+
+# Outline
+
+## Redux
+
+### Vocabulary
+
+- Redux
+- store
+- reducer
+- action
+- createStore
+- dispatch
+
+### Overview
+
+- Principles of Redux (Redux as a design pattern)
+  - store
+  - reducer
+  - action
+- Implementation (Redux as a tool)
+  - Installation
+  - createStore
+  - dispatch
+- Monitoring 
+  - dev tools (model finding)
+
+## Redux in React
+
+### Vocabulary
+
+- react-redux
+- Provider
+- connect
+- mapStateToProps
+- mapDispatchToProps
+  - actions
+
+### Overview
+
+* Installation 
+* Setup
+  * Provider
+  * connect
+
+## Resources
+
+* `![reducer](./reducer.png)`
+* `![reducer](./data-flow.png)`
+* `![reducer](./react.png)`
+* `![reducer](./redux.png)`
 * Install Redux:
   * `<script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.1/redux.min.js"></script>`
-
 * Install Devtools:
     * Link: https://github.com/zalmoxisus/redux-devtools-extension 
     * `window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()`
