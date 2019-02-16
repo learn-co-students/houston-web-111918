@@ -3,6 +3,7 @@ import { HogDashboard } from './HogDashboard';
 import { Cherub } from './characters/Cherub';
 import { Rainbowdash } from './characters/Rainbowdash';
 import { GalaxyNote } from './characters/GalaxyNote';
+import { Bozar } from './characters/Bozar';
 export class HogArena extends Component {
 
     state = {
@@ -67,6 +68,7 @@ export class HogArena extends Component {
                 <Cherub cherub={cherub}/>
                 <Rainbowdash rainbowdash={rainbowdash}/>
                 <GalaxyNote galaxyNote={galaxyNote}/>
+                <Bozar />
             </div>
         );
     }

@@ -62,7 +62,7 @@ export class DragonArena extends Component {
                     attackSmaug={this.attackSmaug}
                     healSmaug={this.healSmaug}
                 />
-                <Bozar bozar={bozar}/>
+                
                 <Smaug smaug={smaug}/>
                 <Toothless toothless={toothless}/>
             </div>
