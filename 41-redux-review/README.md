@@ -1,3 +1,1 @@
 # Redux Applications
-
-* 
