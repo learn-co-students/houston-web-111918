@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  fluff_percentage: MyString
+  img_url: MyString
+
+two:
+  name: MyString
+  fluff_percentage: MyString
+  img_url: MyString
